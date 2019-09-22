@@ -47,8 +47,18 @@ class Directory extends React.Component{
         return (
             <div className='directory-menu'>
             {
-                this.state.sections.map(section => (
-                    <MenuItem key={section.id} title={section.title} imageUrl={section.imageUrl} size={section.size} />
+                // CÚ PHÁP 1
+                // this.state.sections.map(section => (
+                //     <MenuItem key={section.id} title={section.title} imageUrl={section.imageUrl} size={section.size} linkUrl={section.linkUrl} />
+                // ))
+
+                // Do các thuộc tính truyền cho component MenuItem được đặt tên trùng
+                // với tên các thuộc tính trong đối tượng section nên có thể sử dụng
+                // cú pháp 2 dựa trên Spread operator như sau:
+                // CÚ PHÁP 2: Với cú pháp này, các property được tạo ra có cùng tên
+                // với các thuộc tính trong từng phần tử của mảng sections
+                this.state.sections.map(({id, ...otherSectionProperties}) => (
+                    <MenuItem key={id} { ...otherSectionProperties } />
                 ))
             }
             </div>
