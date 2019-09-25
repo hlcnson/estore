@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx';
+import Header from './components/header/header.component';
 
 
 function App() {
@@ -25,8 +26,12 @@ function App() {
     // Component switch có chức năng kết thúc việc so khớp các route bên trong
     // sau khi đã match được một route. Ví dụ: nếu người dùng nhập vào url /hats
     // thì chỉ có route / được so khớp và chỉ có component Homepage được render.
+
+    // Component Header được đặt bên ngoài component Switch để nó luôn được render
+    // bất kể route nào đang được component Switch và Route kích hoạt.
     return (
         <div>
+            <Header />
             <Switch>
                 <Route exact path='/' component={HomePage} />
                 <Route path='/shop' component={ShopPage} />
